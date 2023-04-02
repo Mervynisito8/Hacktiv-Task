@@ -33,7 +33,7 @@ export default function Signup() {
     }),
     onSubmit: (values) => {
       setLoad(true);
-      fetch("http://localhost:8080/users", {
+      fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(values),
