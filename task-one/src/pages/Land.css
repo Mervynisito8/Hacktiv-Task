@@ -1,0 +1,64 @@
+.land {
+  background-image: linear-gradient(
+    to left top,
+    #35b787,
+    #3eb883,
+    #46ba7e,
+    #4ebb7a,
+    #56bc75,
+    #5bbd71,
+    #61be6e,
+    #66bf6a,
+    #69bf67,
+    #6dc063,
+    #70c060,
+    #74c05c
+  );
+  height: 100vh;
+}
+
+.link-underline {
+  border-bottom-width: 0;
+  background-image: linear-gradient(
+    to left top,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff
+  );
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.2s ease-in-out;
+}
+
+.link-underline-black {
+  background-image: linear-gradient(
+    to left top,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #ffffff
+  );
+}
+
+.link-underline:hover {
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
