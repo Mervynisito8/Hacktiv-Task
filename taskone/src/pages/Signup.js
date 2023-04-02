@@ -25,7 +25,7 @@ export default function Signup() {
     validationSchema: Yup.object({
       fullName: Yup.string().required("required"),
       mobile: Yup.string().required("required"),
-      email: Yup.string().required("required"),
+      email: Yup.string().required("required").email("Invalid email address"),
       address: Yup.string().required("required"),
       password: Yup.string().required("required"),
       gender: Yup.string().required("required"),
@@ -56,7 +56,7 @@ export default function Signup() {
           <div className="flex-col mt-2">
             <label className={label}>
               <span>What should we call you?</span>
-              {formik.errors.fullName ? (
+              {formik.touched.fullName && formik.errors.fullName ? (
                 <p className={err}>*{formik.errors.fullName}</p>
               ) : null}
             </label>
@@ -68,11 +68,12 @@ export default function Signup() {
               placeholder="e.g. John Doe"
               value={formik.values.fullName}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
             <label className={label}>
               <span>Your Mobile Number</span>
-              {formik.errors.mobile ? (
+              {formik.touched.mobile && formik.errors.mobile ? (
                 <p className={err}>*{formik.errors.mobile}</p>
               ) : null}
             </label>
@@ -84,11 +85,12 @@ export default function Signup() {
               placeholder="09** *** ****"
               value={formik.values.mobile}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
             <label className={label}>
               <span>Your Email</span>
-              {formik.errors.email ? (
+              {formik.touched.email && formik.errors.email ? (
                 <p className={err}>*{formik.errors.email}</p>
               ) : null}
             </label>
@@ -99,11 +101,12 @@ export default function Signup() {
               placeholder="name@company.com"
               value={formik.values.email}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
             <label className={label}>
               <span>Your Address</span>
-              {formik.errors.address ? (
+              {formik.touched.address && formik.errors.address ? (
                 <p className={err}>*{formik.errors.address}</p>
               ) : null}
             </label>
@@ -114,11 +117,12 @@ export default function Signup() {
               placeholder="House No. / Street / Village / City"
               value={formik.values.address}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
             <label className={label}>
               <span>Password</span>
-              {formik.errors.password ? (
+              {formik.touched.password && formik.errors.password ? (
                 <p className={err}>*{formik.errors.password}</p>
               ) : null}
             </label>
@@ -129,6 +133,7 @@ export default function Signup() {
               placeholder="********"
               value={formik.values.password}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
           </div>
 
@@ -136,7 +141,7 @@ export default function Signup() {
             <div className="w-1/2">
               <label className="flex py-2 w-3/12 font-pop font-medium text-sm text-gray-700">
                 <span>Gender</span>
-                {formik.errors.gender ? (
+                {formik.touched.gender && formik.errors.gender ? (
                   <p className={err}>*{formik.errors.gender}</p>
                 ) : null}
               </label>
@@ -146,6 +151,7 @@ export default function Signup() {
                 id="sex"
                 value={formik.values.gender}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               >
                 <option hidden>Select Your Gender</option>
                 <option value="male">Male</option>
@@ -158,7 +164,7 @@ export default function Signup() {
             <div className="w-1/2">
               <label className="flex py-2 w-3/12 font-pop font-medium text-sm text-gray-700">
                 <span>Birthdate</span>
-                {formik.errors.birthdate ? (
+                {formik.touched.birthdate && formik.errors.birthdate ? (
                   <p className={err}>*{formik.errors.birthdate}</p>
                 ) : null}
               </label>
@@ -168,6 +174,7 @@ export default function Signup() {
                 name="birthdate"
                 value={formik.values.birthdate}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
             </div>
           </div>
@@ -187,7 +194,7 @@ export default function Signup() {
               type="submit"
               className="w-full text-center my-5 py-2 bg-sec rounded-md font-medium font-pop text-slate-50 hover:bg-prime"
             >
-              Create an Account
+              Creating Account...
             </button>
           )}
 
