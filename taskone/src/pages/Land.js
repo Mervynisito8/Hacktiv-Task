@@ -10,7 +10,7 @@ export default function Land() {
           </h1>
         </div>
 
-        <div className="space-x-14 font-normal text-base">
+        <div className="space-x-14 font-bold font-mont text-base">
           <NavLink to="login">
             <span class="link link-underline link-underline-black">Login</span>
           </NavLink>

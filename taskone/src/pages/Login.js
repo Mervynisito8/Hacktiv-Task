@@ -20,7 +20,7 @@ export default function Login() {
           </h1>
           <p className="my-7 font-pop font-normal">
             Didn't have an account yet?{" "}
-            <Link className="text-prime hover:text-acsent" to="signup">
+            <Link className="text-prime hover:text-acsent" to="/signup">
               Signup
             </Link>{" "}
             here.

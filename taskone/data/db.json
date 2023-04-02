@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "fullName": "Allen Abad",
+      "mobile": 9081747004,
+      "email": "allen.abad@gmail.com",
+      "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
+      "password": "vonvon123",
+      "gender": "male",
+      "birthdate": "",
+      "id": 1
+    },
+    {
+      "fullName": "Von Allen",
+      "mobile": 9081747004,
+      "email": "thejoker3501@gmail.com",
+      "address": "afasdasdasdasd",
+      "password": "adsasdasdasdasd",
+      "gender": "male",
+      "birthdate": "2023-04-03",
+      "id": 2
+    }
+  ]
+}
