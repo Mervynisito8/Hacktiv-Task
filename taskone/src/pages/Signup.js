@@ -2,7 +2,9 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
 import {useFormik} from "formik";
-import * as Yup from "yup";
+import {scheme} from "../schemas/scheme";
+import ShowHidePass from "../components/ShowHidePass";
+import ConfirmPass from "../components/ConfirmPass";
 
 export default function Signup() {
   const [load, setLoad] = useState(false);
@@ -19,18 +21,11 @@ export default function Signup() {
       email: "",
       address: "",
       password: "",
+      confirmPass: "",
       gender: "",
       birthdate: "",
     },
-    validationSchema: Yup.object({
-      fullName: Yup.string().required("required"),
-      mobile: Yup.string().required("required"),
-      email: Yup.string().required("required").email("Invalid email address"),
-      address: Yup.string().required("required"),
-      password: Yup.string().required("required"),
-      gender: Yup.string().required("required"),
-      birthdate: Yup.string().required("required"),
-    }),
+    validationSchema: scheme,
     onSubmit: (values) => {
       setLoad(true);
       fetch("http://localhost:3000/users", {
@@ -47,7 +42,7 @@ export default function Signup() {
 
   return (
     <div className="signup flex w-full h-screen ">
-      <main className="w-1/2 h-screen flex-col p-24 bg-white">
+      <main className="w-1/2 h-screen flex-col px-24 py-14 bg-white">
         <h1 className="font-mont font-extrabold text-2xl mb-4">
           Come As One Grow As One
         </h1>
@@ -126,14 +121,19 @@ export default function Signup() {
                 <p className={err}>*{formik.errors.password}</p>
               ) : null}
             </label>
-            <input
-              className={input}
-              type="password"
-              name="password"
-              placeholder="********"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+            <ShowHidePass
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              passValue={formik.values.password}
+            />
+
+            <label className={label}>
+              <span>Confirm Password</span>
+            </label>
+            <ConfirmPass
+              handleChange={formik.handleChange}
+              handleBlur={formik.handleBlur}
+              passValue={formik.values.confirmPass}
             />
           </div>
 

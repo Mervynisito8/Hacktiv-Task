@@ -1,4 +1,5 @@
 import {NavLink, Link, Outlet} from "react-router-dom";
+import ShowHidePass from "../components/ShowHidePass";
 
 export default function Land() {
   return (
@@ -23,6 +24,7 @@ export default function Land() {
       </nav>
 
       <Outlet />
+      <ShowHidePass />
     </div>
   );
 }
