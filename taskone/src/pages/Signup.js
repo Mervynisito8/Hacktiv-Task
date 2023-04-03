@@ -11,7 +11,10 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const label = "flex py-2 font-pop font-medium text-sm text-gray-700";
-  const input = "w-full p-2 rounded text-gray-8000 border-2";
+  const input =
+    "w-full p-2 rounded text-gray-800 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none";
+  const inputErr =
+    "focus:border-red-500 focus:outline-none w-full p-2 rounded text-gray-800 border-2 border-red-500 border-opacity-50";
   const err = "text-red-500 ml-2";
 
   const formik = useFormik({
@@ -57,7 +60,11 @@ export default function Signup() {
             </label>
 
             <input
-              className={input}
+              className={
+                formik.touched.fullName && formik.errors.fullName
+                  ? inputErr
+                  : input
+              }
               type="text"
               name="fullName"
               placeholder="e.g. John Doe"
@@ -74,10 +81,12 @@ export default function Signup() {
             </label>
 
             <input
-              className={input}
-              type="number"
+              className={
+                formik.touched.mobile && formik.errors.mobile ? inputErr : input
+              }
+              type="text"
               name="mobile"
-              placeholder="09** *** ****"
+              placeholder="639** *** ****"
               value={formik.values.mobile}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -90,7 +99,9 @@ export default function Signup() {
               ) : null}
             </label>
             <input
-              className={input}
+              className={
+                formik.touched.email && formik.errors.email ? inputErr : input
+              }
               type="text"
               name="email"
               placeholder="name@company.com"
@@ -106,7 +117,11 @@ export default function Signup() {
               ) : null}
             </label>
             <input
-              className={input}
+              className={
+                formik.touched.address && formik.errors.address
+                  ? inputErr
+                  : input
+              }
               type="text"
               name="address"
               placeholder="House No. / Street / Village / City"
@@ -125,28 +140,39 @@ export default function Signup() {
               handleChange={formik.handleChange}
               handleBlur={formik.handleBlur}
               passValue={formik.values.password}
+              touched={formik.touched.password}
+              err={formik.errors.password}
             />
 
             <label className={label}>
               <span>Confirm Password</span>
+              {formik.touched.confirmPass && formik.errors.confirmPass ? (
+                <p className={err}>*{formik.errors.confirmPass}</p>
+              ) : null}
             </label>
             <ConfirmPass
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
-              passValue={formik.values.confirmPass}
+              handleChanges={formik.handleChange}
+              handleBlurs={formik.handleBlur}
+              confirmPassValue={formik.values.confirmPass}
+              touched={formik.touched.confirmPass}
+              err={formik.errors.confirmPass}
             />
           </div>
 
           <div className="w-full flex mt-2">
             <div className="w-1/2">
-              <label className="flex py-2 w-3/12 font-pop font-medium text-sm text-gray-700">
+              <label className={label}>
                 <span>Gender</span>
                 {formik.touched.gender && formik.errors.gender ? (
                   <p className={err}>*{formik.errors.gender}</p>
                 ) : null}
               </label>
               <select
-                className="w-full p-2 rounded text-gray-500 border-2"
+                className={
+                  formik.touched.gender && formik.errors.gender
+                    ? inputErr
+                    : input
+                }
                 name="gender"
                 id="sex"
                 value={formik.values.gender}
@@ -162,14 +188,18 @@ export default function Signup() {
             <div className="w-1/12"></div>
 
             <div className="w-1/2">
-              <label className="flex py-2 w-3/12 font-pop font-medium text-sm text-gray-700">
+              <label className={label}>
                 <span>Birthdate</span>
                 {formik.touched.birthdate && formik.errors.birthdate ? (
                   <p className={err}>*{formik.errors.birthdate}</p>
                 ) : null}
               </label>
               <input
-                className="w-full p-2 rounded text-gray-500 border-2"
+                className={
+                  formik.touched.birthdate && formik.errors.birthdate
+                    ? inputErr
+                    : input
+                }
                 type="date"
                 name="birthdate"
                 value={formik.values.birthdate}
@@ -206,7 +236,7 @@ export default function Signup() {
           </p>
         </form>
       </main>
-      <section className="w-1/2 h-screen flex-col items-center px-20 py-64 text-slate-50">
+      <section className="w-1/2 h-screen flex-col items-center px-20 py-64 text-slate-50 ">
         <div>
           <Link className="flex items-center" to="/">
             <img className="w-16" src={logo} alt="hacktiv logo" />

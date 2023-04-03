@@ -9,6 +9,17 @@
       "gender": "male",
       "birthdate": "",
       "id": 1
+    },
+    {
+      "fullName": "Von Allen",
+      "mobile": 9081747004,
+      "email": "theendordead@gmail.com",
+      "address": "afasdasdasdasd",
+      "password": "Vonvon123",
+      "confirmPass": "Vonvon123",
+      "gender": "male",
+      "birthdate": "2023-04-05",
+      "id": 2
     }
   ]
 }
