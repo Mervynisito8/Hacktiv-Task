@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import Axios from "axios";
 
 const passRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
@@ -9,8 +10,23 @@ export const scheme = Yup.object().shape({
     .typeError("That doesn't look like a phone number")
     .positive("A phone number can't start with a minus")
     .integer("A phone number can't include a decimal point")
-    .min(8),
+    .min(11, "Thats not a valid number"),
   email: Yup.string().required("required").email("Invalid email address"),
+  // .test("Unique Email", "Email already in use", function (value) {
+  //   return new Promise((resolve, reject) => {
+  //     Axios.get(`http://localhost:3000/users/${value}`)
+  //       .then((res) => {
+  //         resolve(true);
+  //       })
+  //       .catch((error) => {
+  //         if (
+  //           error.reponse.data.content === "The Email has already been taken."
+  //         ) {
+  //           resolve(false);
+  //         }
+  //       });
+  //   });
+  // }),
   address: Yup.string().required("required"),
   password: Yup.string()
     .required("required")

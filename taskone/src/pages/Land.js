@@ -23,6 +23,7 @@ export default function Land() {
       </nav>
 
       <Outlet />
+      <section></section>
     </div>
   );
 }

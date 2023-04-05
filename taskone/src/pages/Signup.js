@@ -5,8 +5,10 @@ import {useFormik} from "formik";
 import {scheme} from "../schemas/scheme";
 import ShowHidePass from "../components/ShowHidePass";
 import ConfirmPass from "../components/ConfirmPass";
+import Axios from "axios";
 
 export default function Signup() {
+  var CryptoJS = require("crypto-js");
   const [load, setLoad] = useState(false);
   const navigate = useNavigate();
 
@@ -14,7 +16,7 @@ export default function Signup() {
   const input =
     "w-full p-2 rounded text-gray-800 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none";
   const inputErr =
-    "focus:border-red-500 focus:outline-none w-full p-2 rounded text-gray-800 border-2 border-red-500 border-opacity-50";
+    "focus:border-red-500 focus:outline-none w-full p-2 rounded text-red-700 border-2 border-red-500 border-opacity-50";
   const err = "text-red-500 ml-2";
 
   const formik = useFormik({
@@ -31,12 +33,15 @@ export default function Signup() {
     validationSchema: scheme,
     onSubmit: (values) => {
       setLoad(true);
-      fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(values),
-      }).then(() => {
-        console.log("new user added");
+      const passCipher = CryptoJS.AES.encrypt(
+        values.password,
+        "secretKey 123"
+      ).toString();
+
+      values.password = passCipher;
+      values.confirmPass = passCipher;
+
+      Axios.post("http://localhost:3000/users", values).then(() => {
         setLoad(false);
         navigate("/login");
       });
@@ -84,9 +89,9 @@ export default function Signup() {
               className={
                 formik.touched.mobile && formik.errors.mobile ? inputErr : input
               }
-              type="text"
+              type="number"
               name="mobile"
-              placeholder="639** *** ****"
+              placeholder="09** *** ****"
               value={formik.values.mobile}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

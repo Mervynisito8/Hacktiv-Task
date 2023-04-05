@@ -2,24 +2,14 @@
   "users": [
     {
       "fullName": "Allen Abad",
-      "mobile": 9081747004,
-      "email": "allen.abad@gmail.com",
-      "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
-      "password": "vonvon123",
-      "gender": "male",
-      "birthdate": "",
-      "id": 1
-    },
-    {
-      "fullName": "Von Allen",
-      "mobile": 9081747004,
+      "mobile": "09081747004",
       "email": "theendordead@gmail.com",
-      "address": "afasdasdasdasd",
-      "password": "Vonvon123",
-      "confirmPass": "Vonvon123",
+      "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
+      "password": "U2FsdGVkX1+o4I16R8vnoW2nudLbsQsZsNttdXd2rxE=",
+      "confirmPass": "U2FsdGVkX18tThg9JeN/Dqsq4craPS4if6K4lthqM80=",
       "gender": "male",
-      "birthdate": "2023-04-05",
-      "id": 2
+      "birthdate": "2001-03-05",
+      "id": 3
     }
   ]
 }
