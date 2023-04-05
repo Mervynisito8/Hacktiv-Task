@@ -3,7 +3,8 @@ import logo from "../assets/hciLogo.png";
 
 export default function Login() {
   const label = "flex py-3 font-mont font-medium";
-  const input = "w-full p-2 border-2";
+  const input =
+    "w-full p-2 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none rounded";
 
   return (
     <div className="login flex justify-center items-center w-full h-screen">

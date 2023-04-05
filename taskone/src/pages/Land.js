@@ -1,6 +1,10 @@
 import {NavLink, Link, Outlet} from "react-router-dom";
+import Axios from "axios";
 
 export default function Land() {
+  Axios.get("http://localhost:3000/users").then((res) =>
+    console.log(res.data.email)
+  );
   return (
     <div className="h-screen">
       <nav className="flex justify-between max-w-6xl mx-auto py-7 text-slate-50 font-pop">
