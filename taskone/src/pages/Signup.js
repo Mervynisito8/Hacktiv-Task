@@ -2,13 +2,15 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
 import {useFormik} from "formik";
-import {scheme} from "../schemas/scheme";
+import {Scheme} from "../schemas/Scheme";
 import ShowHidePass from "../components/ShowHidePass";
 import ConfirmPass from "../components/ConfirmPass";
 import Axios from "axios";
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Signup() {
-  var CryptoJS = require("crypto-js");
+  const CryptoJS = require("crypto-js");
   const [load, setLoad] = useState(false);
   const navigate = useNavigate();
 
@@ -30,21 +32,66 @@ export default function Signup() {
       gender: "",
       birthdate: "",
     },
-    validationSchema: scheme,
+    validationSchema: Scheme,
     onSubmit: (values) => {
       setLoad(true);
-      const passCipher = CryptoJS.AES.encrypt(
-        values.password,
-        "secretKey 123"
-      ).toString();
+      Axios.get(`http://localhost:3000/users?email=${values.email}`).then(
+        (response) => {
+          if (response.data.length === 0) {
+            Axios.get(
+              `http://localhost:3000/users?mobile=${values.mobile}`
+            ).then((response) => {
+              if (response.data.length === 0) {
+                //prettier-ignore
+                const passCipher = CryptoJS.AES.encrypt(values.password,"secretKey 123").toString();
 
-      values.password = passCipher;
-      values.confirmPass = passCipher;
+                values.password = passCipher;
+                values.confirmPass = passCipher;
 
-      Axios.post("http://localhost:3000/users", values).then(() => {
-        setLoad(false);
-        navigate("/login");
-      });
+                Axios.post("http://localhost:3000/users", values).then(() => {
+                  setLoad(false);
+
+                  navigate("/");
+                  toast.success("🦄 Wow so easy!", {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                });
+              } else {
+                setLoad(false);
+                toast.error("Mobile number already exist", {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+              }
+            });
+          } else {
+            setLoad(false);
+            toast.error("Email already signed", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
+        }
+      );
     },
   });
 
@@ -260,6 +307,7 @@ export default function Signup() {
           </p>
         </div>
       </section>
+      <ToastContainer />
     </div>
   );
 }

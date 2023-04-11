@@ -1,15 +1,26 @@
 {
   "users": [
     {
-      "fullName": "Allen Abad",
-      "mobile": "09081747004",
+      "fullName": "Von Allen",
+      "mobile": 9081747004,
       "email": "theendordead@gmail.com",
       "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
-      "password": "U2FsdGVkX1+o4I16R8vnoW2nudLbsQsZsNttdXd2rxE=",
-      "confirmPass": "U2FsdGVkX18tThg9JeN/Dqsq4craPS4if6K4lthqM80=",
+      "password": "U2FsdGVkX19eXNW6wQJf/BZZ2enSy5FNvS0izDetPUs=",
+      "confirmPass": "U2FsdGVkX19eXNW6wQJf/BZZ2enSy5FNvS0izDetPUs=",
       "gender": "male",
       "birthdate": "2001-03-05",
-      "id": 3
+      "id": 1
+    },
+    {
+      "fullName": "Allen Abad",
+      "mobile": 9165408733,
+      "email": "thejoker3501@gmail.com",
+      "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
+      "password": "U2FsdGVkX1+/Yz54oXiusAb4Qx+/01lPf2aOoggD8OA=",
+      "confirmPass": "U2FsdGVkX1+/Yz54oXiusAb4Qx+/01lPf2aOoggD8OA=",
+      "gender": "male",
+      "birthdate": "2023-04-12",
+      "id": 2
     }
   ]
 }

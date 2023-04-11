@@ -1,11 +1,51 @@
 import {Link} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {useState} from "react";
 
 export default function Login() {
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
   const label = "flex py-3 font-mont font-medium";
   const input =
     "w-full p-2 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none rounded";
 
+  const valid = () => {
+    let result = true;
+    if (user === "" || user === null) {
+      result = false;
+      toast.warn("Please provided Email/Mobile", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    if (pass === "" || pass === null) {
+      result = false;
+      toast.warn("Please put your password", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    return result;
+  };
+
+  const proceed = async (e) => {
+    e.preventDefault();
+    valid();
+  };
   return (
     <div className="login flex justify-center items-center w-full h-screen">
       <section className="w-7/12 h-4/6 shadow-2xl rounded-lg px-14 py-4 bg-white">
@@ -37,7 +77,8 @@ export default function Login() {
               className={input}
               type="text"
               placeholder="Enter your Email/Mobile Number"
-              value=""
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
           </div>
 
@@ -48,18 +89,21 @@ export default function Login() {
             <input
               className={input}
               placeholder="Enter your Password"
-              value=""
+              value={pass}
+              onChange={(e) => setPass(e.target.value)}
             />
           </div>
 
           <button
             className="w-full bg-sec mt-5 rounded text-slate-50 font-bold font-pop p-2 hover:bg-prime"
             type="submit"
+            onClick={proceed}
           >
             Login
           </button>
         </form>
       </section>
+      <ToastContainer />
     </div>
   );
 }
