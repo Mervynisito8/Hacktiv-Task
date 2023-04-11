@@ -136,7 +136,7 @@ export default function Signup() {
               className={
                 formik.touched.mobile && formik.errors.mobile ? inputErr : input
               }
-              type="number"
+              type="text"
               name="mobile"
               placeholder="09** *** ****"
               value={formik.values.mobile}
