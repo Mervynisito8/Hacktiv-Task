@@ -1,15 +1,14 @@
 import * as Yup from "yup";
 
 const passRules = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+const numRules = /^(?:\d{4}-\d{3}-\d{4}|\d{11})$/;
 
 export const Scheme = Yup.object().shape({
   fullName: Yup.string().required("required"),
-  mobile: Yup.number("Please provide a valid number")
+  mobile: Yup.string("Please provide a valid number")
     .required("required")
     .typeError("That doesn't look like a phone number")
-    .positive("A phone number can't start with a minus")
-    .integer("A phone number can't include a decimal point")
-    .min(11, "Thats not a valid number"),
+    .matches(numRules, {message: "Please provide a valid number"}),
   email: Yup.string().required("required").email("Invalid email address"),
   address: Yup.string().required("required"),
   password: Yup.string()

@@ -10,6 +10,17 @@
       "gender": "male",
       "birthdate": "2001-03-05",
       "id": 1
+    },
+    {
+      "fullName": "Allen Abad",
+      "mobile": "09165408733",
+      "email": "thejoker3501@gmail.com",
+      "address": "164 Blk. 9 Zone 2 Brgy. Fort Bonifacio Taguig City",
+      "password": "U2FsdGVkX18Xsa5H05FwEGWSpFWldXowREkkzBwmbbg=",
+      "confirmPass": "U2FsdGVkX18Xsa5H05FwEGWSpFWldXowREkkzBwmbbg=",
+      "gender": "male",
+      "birthdate": "2023-04-12",
+      "id": 2
     }
   ]
 }

@@ -282,7 +282,7 @@ export default function Signup() {
 
           <p className="font-mont font-medium">
             Already have an account?{" "}
-            <Link to="/login" className="text-prime hover:text-acsent">
+            <Link to="/" className="text-prime hover:text-acsent">
               Login here
             </Link>
           </p>
@@ -290,7 +290,7 @@ export default function Signup() {
       </main>
       <section className="w-1/2 h-screen flex-col items-center px-20 py-64 text-slate-50 ">
         <div>
-          <Link className="flex items-center" to="/">
+          <Link className="flex items-center" to="/land">
             <img className="w-16" src={logo} alt="hacktiv logo" />
             <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
           </Link>

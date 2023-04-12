@@ -1,67 +1,64 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {useState} from "react";
 import axios from "axios";
 import LoginPass from "../components/LoginPass";
+import {useFormik} from "formik";
+import * as yup from "yup";
 
 export default function Login() {
-  const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
   const CryptoJS = require("crypto-js");
+  const navigate = useNavigate();
   const label = "flex py-3 font-mont font-medium";
   const input =
     "w-full p-2 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none rounded";
+  const err = "text-red-500 ml-2";
 
-  const valid = () => {
-    let result = true;
-    if (user === "" || user === null) {
-      result = false;
-      toast.warn("Please provide Email / Mobile.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-    if (pass === "" || pass === null) {
-      result = false;
-      toast.warn("Please put your password.", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-    return result;
-  };
-
-  const proceed = async (e) => {
-    e.preventDefault();
-    if (valid()) {
-      try {
-        const response = await axios.get(`http://localhost:8800/users/`);
-        const data = await response.data;
-        const user = await data.find(
-          (input) => input.email === user || user.mobile === user
-        );
-        if (user) {
-          //prettier-ignore
-          const userPassword = CryptoJS.AES.decrypt(user.password, "secretKey 123");
-          const decryptedPassword = userPassword.toString(CryptoJS.enc.Utf8);
-          if (pass === decryptedPassword) {
-            console.log(user);
+  const {values, handleBlur, handleChange, handleSubmit, touched, errors} =
+    useFormik({
+      initialValues: {
+        userInput: "",
+        passInput: "",
+      },
+      validationSchema: yup.object({
+        userInput: yup.string().required("Please enter your email/mobile."),
+        passInput: yup.string().required("Please provide a password."),
+      }),
+      onSubmit: async (values) => {
+        try {
+          const response = await axios.get(`http://localhost:3000/users/`);
+          const data = response.data;
+          const user = data.find(
+            (user) =>
+              user.email === values.userInput ||
+              user.mobile === values.userInput
+          );
+          console.log(data);
+          if (user) {
+            const userPassword = CryptoJS.AES.decrypt(
+              user.password,
+              "secretKey 123"
+            );
+            const decryptedPassword = userPassword.toString(CryptoJS.enc.Utf8);
+            console.log(decryptedPassword);
+            if (values.passInput === decryptedPassword) {
+              toast.success("Success");
+              navigate("/land");
+            } else {
+              toast.error("Password does't match.", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }
           } else {
-            toast.error("Password doesn't match", {
+            toast.error("User doesn't exists.", {
               position: "top-center",
               autoClose: 5000,
               hideProgressBar: false,
@@ -69,11 +66,13 @@ export default function Login() {
               pauseOnHover: true,
               draggable: true,
               progress: undefined,
-              theme: "colored",
+              theme: "light",
             });
           }
-        } else {
-          toast.error("User doesn't exist", {
+        } catch (error) {
+          console.error(error);
+
+          toast.error("Error fetching data.", {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -81,24 +80,12 @@ export default function Login() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "colored",
+            theme: "light",
           });
         }
-      } catch (error) {
-        console.error(error);
-        toast.error("Error occured while fetching data", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-    }
-  };
+      },
+    });
+
   return (
     <div className="login flex justify-center items-center w-full h-screen">
       <section className="w-7/12 h-4/6 shadow-2xl rounded-lg px-14 py-4 bg-white">
@@ -121,31 +108,42 @@ export default function Login() {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="flex-col">
             <label className={label}>
               <span>Email/Mobile</span>
+              {touched.userInput && errors.userInput ? (
+                <p className={err}>*{errors.userInput}</p>
+              ) : null}
             </label>
             <input
               className={input}
               type="text"
+              name="userInput"
               placeholder="Enter your Email/Mobile Number"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              value={values.userInput}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </div>
 
           <div>
             <label className={label}>
               <span>Password</span>
+              {touched.passInput && errors.passInput ? (
+                <p className={err}>*{errors.passInput}</p>
+              ) : null}
             </label>
-            <LoginPass pass={pass} setPass={setPass} />
+            <LoginPass
+              values={values.passInput}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+            />
           </div>
 
           <button
             className="w-full bg-sec mt-5 rounded text-slate-50 font-bold font-pop p-2 hover:bg-prime"
             type="submit"
-            onClick={proceed}
           >
             Login
           </button>
