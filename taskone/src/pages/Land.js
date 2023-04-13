@@ -3,15 +3,16 @@ import logo from "../assets/hciLogo.png";
 
 export default function LandHome() {
   return (
-    <div className="h-screen colorgradient">
-      <nav className="flex justify-between max-w-6xl mx-auto py-7 text-slate-50 font-pop">
+    <div className="h-screen">
+      <nav className="flex items-center justify-between max-w-6xl mx-auto py-7 text-slate-50 font-pop">
         <div>
-          <h1 className="text-4xl font-semibold">
+          <h1 className="text-3xl font-semibold flex items-center">
+            <img className="w-12" src={logo} alt="logo" />
             <Link>Hacktiv</Link>
           </h1>
         </div>
 
-        <div className="space-x-14 font-bold font-mont text-base cursor-pointer">
+        <div className="space-x-14 font-bold font-pop text-base cursor-pointer">
           <NavLink to="/login">
             <span class="link link-underline link-underline-black">Login</span>
           </NavLink>
@@ -33,7 +34,7 @@ export default function LandHome() {
             to revolutionize the world. Come and oin us in our mission to create
             a better world.
           </p>
-          <p className="text-2xl font-medium text-center">
+          <p className="text-2xl font-medium text-center font-mont">
             Join Our Team Today!
           </p>
         </div>

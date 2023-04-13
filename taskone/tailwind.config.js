@@ -7,6 +7,7 @@ module.exports = {
         prime: "#587850",
         sec: "#709078",
         acsent: "#78B0A0",
+        ter: "#F8D0B0",
       },
       fontFamily: {
         pop: ["Poppins"],

@@ -48,7 +48,7 @@ export default function Login() {
             if (values.passInput === decryptedPassword) {
               dispatch(loginSuccess(user));
               toast.success("Success");
-              navigate("/land");
+              navigate("/home");
             } else {
               dispatch(loginFail("Password don't match"));
               toast.error("Password does't match.", {
