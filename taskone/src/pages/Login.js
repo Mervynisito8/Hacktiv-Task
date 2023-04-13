@@ -6,10 +6,13 @@ import axios from "axios";
 import LoginPass from "../components/LoginPass";
 import {useFormik} from "formik";
 import * as yup from "yup";
+import {loginSuccess, loginFail} from "../features/loginUser";
+import {useDispatch} from "react-redux";
 
 export default function Login() {
   const CryptoJS = require("crypto-js");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const label = "flex py-3 font-mont font-medium";
   const input =
     "w-full p-2 border-2 border-sec border-opacity-50 focus:border-prime focus:outline-none rounded";
@@ -43,9 +46,11 @@ export default function Login() {
             const decryptedPassword = userPassword.toString(CryptoJS.enc.Utf8);
             console.log(decryptedPassword);
             if (values.passInput === decryptedPassword) {
+              dispatch(loginSuccess(user));
               toast.success("Success");
               navigate("/land");
             } else {
+              dispatch(loginFail("Password don't match"));
               toast.error("Password does't match.", {
                 position: "top-center",
                 autoClose: 5000,
@@ -58,6 +63,7 @@ export default function Login() {
               });
             }
           } else {
+            dispatch(loginFail("User doesn't exists."));
             toast.error("User doesn't exists.", {
               position: "top-center",
               autoClose: 5000,
@@ -71,7 +77,7 @@ export default function Login() {
           }
         } catch (error) {
           console.error(error);
-
+          dispatch(loginFail("Error fetching"));
           toast.error("Error fetching data.", {
             position: "top-center",
             autoClose: 5000,

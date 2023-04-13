@@ -9,9 +9,6 @@
   --acsent: "#74C05C";
 }
 
-.active {
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
-}
 body {
   background-image: linear-gradient(
     to left top,
@@ -74,4 +71,8 @@ body {
 .link-underline:hover {
   background-size: 100% 2px;
   background-position: 0 100%;
+}
+
+.colorgradient {
+  background: radial-gradient(rgb(91, 148, 91), rgb(33, 71, 33));
 }

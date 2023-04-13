@@ -8,11 +8,14 @@ import ConfirmPass from "../components/ConfirmPass";
 import Axios from "axios";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {registerUser} from "../features/user";
+import {useDispatch} from "react-redux";
 
 export default function Signup() {
   const CryptoJS = require("crypto-js");
-  const [load, setLoad] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [load, setLoad] = useState(false);
 
   const label = "flex py-2 font-pop font-medium text-sm text-gray-700";
   const input =
@@ -33,9 +36,9 @@ export default function Signup() {
       birthdate: "",
     },
     validationSchema: Scheme,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setLoad(true);
-      Axios.get(`http://localhost:3000/users?email=${values.email}`).then(
+      await Axios.get(`http://localhost:3000/users?email=${values.email}`).then(
         (response) => {
           if (response.data.length === 0) {
             Axios.get(
@@ -50,7 +53,7 @@ export default function Signup() {
 
                 Axios.post("http://localhost:3000/users", values).then(() => {
                   setLoad(false);
-
+                  dispatch(registerUser(values));
                   navigate("/");
                   toast.success("🦄 Wow so easy!", {
                     position: "top-center",
@@ -282,7 +285,7 @@ export default function Signup() {
 
           <p className="font-mont font-medium">
             Already have an account?{" "}
-            <Link to="/" className="text-prime hover:text-acsent">
+            <Link to="/login" className="text-prime hover:text-acsent">
               Login here
             </Link>
           </p>
@@ -290,7 +293,7 @@ export default function Signup() {
       </main>
       <section className="w-1/2 h-screen flex-col items-center px-20 py-64 text-slate-50 ">
         <div>
-          <Link className="flex items-center" to="/land">
+          <Link className="flex items-center" to="/">
             <img className="w-16" src={logo} alt="hacktiv logo" />
             <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
           </Link>

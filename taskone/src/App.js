@@ -7,6 +7,7 @@ import {
 
 //pages
 import Land from "./pages/Land";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Page404 from "./pages/Page404";
@@ -15,8 +16,9 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<Login />} />
-        <Route path="land" element={<Land />} />
+        <Route path="/" element={<Land />} />
+        <Route path="login" element={<Login />} />
+        <Route path="home" element={<Home />} />
         <Route path="signup" element={<Signup />} />
         <Route path="*" element={<Page404 />} />
       </Route>
