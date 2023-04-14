@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
 import {useFormik} from "formik";
-import {Scheme} from "../schemas/Scheme";
+import {Scheme} from "../schemas/scheme";
 import ShowHidePass from "../components/ShowHidePass";
 import ConfirmPass from "../components/ConfirmPass";
 import Axios from "axios";
@@ -99,8 +99,8 @@ export default function Signup() {
   });
 
   return (
-    <div className="signup flex w-full h-screen ">
-      <main className="w-1/2 h-screen flex-col px-24 py-14 bg-white">
+    <div className="signup flex flex-col lg:flex-row items-center sm:items-center lg:items-start ">
+      <main className="w-4/5 sm:w-4/5 md:w-4/6 lg:w-1/2 flex-col px-24 py-[30px] bg-white ">
         <h1 className="font-mont font-extrabold text-2xl mb-4">
           Come As One Grow As One
         </h1>
@@ -291,18 +291,18 @@ export default function Signup() {
           </p>
         </form>
       </main>
-      <section className="w-1/2 h-screen flex-col items-center px-20 py-64 text-slate-50 ">
+      <section className="w-3/4 sm:w-3/4 lg:w-1/2 flex-col items-center text-slate-50 my-auto p-10">
         <div>
-          <Link className="flex items-center" to="/">
+          <Link className="flex items-center justify-center p-10 sm:p-10 lg:p-0" to="/">
             <img className="w-16" src={logo} alt="hacktiv logo" />
             <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
           </Link>
         </div>
         <div>
-          <h2 className="font-black font-mont ml-4 text-4xl">
+          <h2 className="font-black font-mont ml-4 text-4xl pb-6 text-center sm:text-center lg:text-left sm:pb-6 lg:p-6 ">
             Harnessing the power of technology for positive impact.
           </h2>
-          <p className="ml-4 my-4 font-normal">
+          <p className="ml-4 my-4 font-normal text-justify leading-7">
             Innovating for a brighter future, empowering change through
             technology and collaboration. Together, we can hack the status quo
             to revolutionize the world. Come and join us in our mission to

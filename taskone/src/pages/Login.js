@@ -93,7 +93,7 @@ export default function Login() {
 
   return (
     <div className="login flex justify-center items-center w-full h-screen">
-      <section className="w-7/12 h-4/6 shadow-2xl rounded-lg px-14 py-4 bg-white">
+      <section className="h-5/6 w-3/4 sm:h-5/6 sm:w-3/4 md:w-8/12 md:h-3/4  lg:w-6/12 shadow-2xl rounded-lg px-14 py-4 bg-white">
         <div className="flex justify-center">
           <Link to="/">
             <img className="w-28" src={logo} alt="hacktiv logo" />
@@ -101,7 +101,7 @@ export default function Login() {
         </div>
 
         <div className="text-center">
-          <h1 className="font-mont font-black text-4xl my-5">
+          <h1 className="font-mont font-black  my-5 text-2xl sm:text-2xl lg:text-3xl">
             Login to your account
           </h1>
           <p className="my-7 font-pop font-normal">
