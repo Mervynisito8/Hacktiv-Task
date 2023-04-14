@@ -293,7 +293,10 @@ export default function Signup() {
       </main>
       <section className="w-3/4 sm:w-3/4 lg:w-1/2 flex-col items-center text-slate-50 my-auto p-10">
         <div>
-          <Link className="flex items-center justify-center p-10 sm:p-10 lg:p-0" to="/">
+          <Link
+            className="flex items-center justify-center p-10 sm:p-10 lg:p-0"
+            to="/"
+          >
             <img className="w-16" src={logo} alt="hacktiv logo" />
             <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
           </Link>
