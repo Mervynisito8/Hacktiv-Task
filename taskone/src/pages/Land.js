@@ -1,7 +1,6 @@
 import {Link, NavLink} from "react-router-dom";
 import logo from "../assets/hciLogo.png";
 
-
 export default function LandHome() {
   return (
     <div className="h-screen">
@@ -22,25 +21,28 @@ export default function LandHome() {
           </NavLink>
         </div>
       </nav>
-      
-      <div className="p-10">
 
-        <div className="font-pop space-y-10 md:grid md:grid-cols-2 text-center">
-
-          <div className="md:flex md:flex-col md:justify-center text-slate-50 space-y-10">
-          <h1 className="text-3xl sm:text-4xl">Welcome to Hacktiv Colab Inc.</h1>
+      <div className="flex items-center justify-center h-5/6">
+        <div className="flex flex-col md:justify-center text-slate-50 space-y-10 w-3/5 pl-28">
+          <h1 className="text-3xl sm:text-4xl font-mont font-bold text-center">
+            Welcome to Hacktiv Colab Inc.
+          </h1>
           <hr />
-          <p className=" text-center leading-8 font-semibold">Innovating for a brighter future, empowering change through technology and collaboration. Together, 
-          we can hack the status quo to revolutionize the world. Come and oin us in our mission to create a better world.</p>
-          <p className="text-2xl">Join Our Team Today!</p>
+          <p className=" text-center leading-8 font-normal opacity-80">
+            Innovating for a brighter future, empowering change through
+            technology and collaboration. Together, we can hack the status quo
+            to revolutionize the world. Come and oin us in our mission to create
+            a better world.
+          </p>
+          <p className="text-2xl font-medium text-center font-mont">
+            Join Our Team Today!
+          </p>
         </div>
 
-        <div className="flex justify-center">
-        <Link to="/">
+        <div className="flex justify-center w-2/5">
+          <Link to="/">
             <img className="w-80" src={logo} alt="hacktiv logo" />
-        </Link>
-        </div>
-
+          </Link>
         </div>
       </div>
     </div>

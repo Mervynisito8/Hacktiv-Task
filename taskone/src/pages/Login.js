@@ -47,7 +47,6 @@ export default function Login() {
             console.log(decryptedPassword);
             if (values.passInput === decryptedPassword) {
               dispatch(loginSuccess(user));
-              toast.success("Success");
               navigate("/home");
             } else {
               dispatch(loginFail("Password don't match"));

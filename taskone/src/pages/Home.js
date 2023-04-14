@@ -8,6 +8,7 @@ export default function Land() {
   const user = useSelector((state) => state.login.currentUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const date = new Date(user.birthdate).toDateString();
 
   const handleOut = () => {
     dispatch(logout());
@@ -31,9 +32,49 @@ export default function Land() {
         </div>
       </nav>
       <div className="mx-16">
-        <div className="bg-slate-50 w-full flex items-center">
-          <div className="w-2/5">
-            <img src={profile} alt="" />
+        <div className="glass bg-slate-50 w-full flex items-center">
+          <div className=" flex items-center justify-center w-3/5">
+            <img className="w-96" src={profile} alt="" />
+          </div>
+          <div className="flex flex-col w-2/5">
+            <span className="font-pop font-bold text-ter text-8xl">Hello,</span>
+            <span className="font-mont font-bold text-ter text-4xl">
+              {user.fullName}
+            </span>
+          </div>
+        </div>
+        <div className="w-full h-96 bg-slate-50 mt-8 text-gray-700 px-12 py-6">
+          <h2 className="font-mont font-bold text-2xl">USER DETAILS</h2>
+          <div className="w-full h-full flex items-center justify-center font-medium font-pop text-xl px-12">
+            <div className="w-1/2">
+              <div className="flex gap-x-2">
+                <span>Full Name:</span>
+                <p className="font-light text-lg">{user.fullName}</p>
+              </div>
+              <div className="flex gap-x-2 py-4">
+                <span>Email:</span>
+                <p className="font-light text-lg">{user.email}</p>
+              </div>
+              <div className="flex gap-x-2">
+                <span>Mobile Number:</span>
+                <p className="font-light text-lg">{user.mobile}</p>
+              </div>
+            </div>
+
+            <div className="w-1/2">
+              <div className="flex gap-x-2">
+                <span>Birthdate:</span>
+                <p className="font-light text-lg">{date}</p>
+              </div>
+              <div className="flex gap-x-2 py-4">
+                <span>Gender:</span>
+                <p className="font-light text-lg">{user.gender}</p>
+              </div>
+              <div className="flex gap-x-2 items-center">
+                <span>Address:</span>
+                <p className="font-light text-base">{user.address}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
