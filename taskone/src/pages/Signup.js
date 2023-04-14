@@ -99,7 +99,7 @@ export default function Signup() {
   });
 
   return (
-    <div className="signup flex flex-col lg:flex-row items-center sm:items-center lg:items-start ">
+    <div className="signup flex flex-col lg:flex-row items-center sm:items-center lg:items-start h-auto">
       <main className="w-4/5 sm:w-4/5 md:w-4/6 lg:w-1/2 flex-col px-24 py-[30px] bg-white ">
         <h1 className="font-mont font-extrabold text-2xl mb-4">
           Come As One Grow As One
@@ -291,15 +291,15 @@ export default function Signup() {
           </p>
         </form>
       </main>
-      <section className="w-3/4 sm:w-3/4 lg:w-1/2 flex-col items-center text-slate-50 my-auto p-10">
+      <section className="w-3/4 sm:w-3/4 lg:w-1/2 flex-col text-slate-50 my-auto p-10">
         <div>
-          <Link className="flex items-center justify-center p-10 sm:p-10 lg:p-0" to="/">
+          <Link className="flex items-center p-10 sm:p-10 lg:p-0 sm:justify-center lg:justify-start " to="/">
             <img className="w-16" src={logo} alt="hacktiv logo" />
             <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
           </Link>
         </div>
         <div>
-          <h2 className="font-black font-mont ml-4 text-4xl pb-6 text-center sm:text-center lg:text-left sm:pb-6 lg:p-6 ">
+          <h2 className="font-black font-mont ml-4 text-4xl text-center sm:text-center lg:text-left ">
             Harnessing the power of technology for positive impact.
           </h2>
           <p className="ml-4 my-4 font-normal text-justify leading-7">
