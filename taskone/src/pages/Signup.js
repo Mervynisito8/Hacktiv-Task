@@ -295,7 +295,7 @@ export default function Signup() {
         <div>
           <Link className="flex items-center p-10 sm:p-10 lg:p-0 sm:justify-center lg:justify-start " to="/">
             <img className="w-16" src={logo} alt="hacktiv logo" />
-            <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc</h1>
+            <h1 className="font-pop font-bold text-3xl">Hacktiv Colab Inc.</h1>
           </Link>
         </div>
         <div>
